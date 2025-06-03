@@ -12,13 +12,21 @@ namespace TurboItems
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Wooden Stake", "wooden_stake");
             Game.Items.Rename("outdated_gun_mods:wooden_stake", "turbo:wooden_stake");
+            
+            //Working method
             gun.gameObject.AddComponent<WoodStake>();
+
+            //Angry method
+            //var behav = gun.gameObject.AddComponent<WoodStake>();
+
+
             gun.SetShortDescription("Stabby Stab");
             gun.SetLongDescription("Taken from the chest of a vampire who had an unsuccessful attempt on their life. Works in a pinch against tough enemies.");
             gun.SetupSprite(null, "wooden_stake_idle_001", 8);
             gun.SetAnimationFPS(gun.shootAnimation, 12);
             gun.SetAnimationFPS(gun.reloadAnimation, 2);
             gun.AddProjectileModuleFrom("38_special", true, false);
+
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.SMALL_BULLET;
             gun.DefaultModule.ammoCost = 1;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
@@ -27,7 +35,7 @@ namespace TurboItems
             gun.DefaultModule.angleVariance = 0f;
             gun.DefaultModule.cooldownTime = 0.5f;
             gun.DefaultModule.numberOfShotsInClip = 1000;
-            Gun gun2 = PickupObjectDatabase.GetById(151) as Gun;
+            //Gun gun2 = PickupObjectDatabase.GetById(151) as Gun;
             gun.muzzleFlashEffects.type = VFXPoolType.None;
             gun.InfiniteAmmo = true;
             gun.barrelOffset.transform.localPosition = new Vector3(0.75f, 0f, 0f);
@@ -35,6 +43,7 @@ namespace TurboItems
             gun.encounterTrackable.EncounterGuid = "muywoodinostakeeeshbad";
             gun.sprite.IsPerpendicular = true;
             gun.gunClass = GunClass.NONE;
+
             Projectile projectile = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);
             projectile.gameObject.SetActive(false);
             FakePrefab.MarkAsFakePrefab(projectile.gameObject);

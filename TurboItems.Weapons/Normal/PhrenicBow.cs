@@ -16,10 +16,12 @@ namespace TurboItems
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Phrenic Bow", "phrenic_bow");
             var behav = gun.gameObject.AddComponent<PhrenicBow>();
+            //gun.gameObject.AddComponent<PhrenicBow>();
+
+            Game.Items.Rename("outdated_gun_mods:phrenic_bow", "turbo:phrenic_bow");
             behav.overrideNormalFireAudio = "Play_WPN_woodbow_shot_01";
             behav.preventNormalFireAudio = true;
             behav.preventNormalReloadAudio = true;
-            Game.Items.Rename("outdated_gun_mods:phrenic_bow", "turbo:phrenic_bow");
             gun.SetShortDescription("Bullet time activated");
             gun.SetLongDescription("An old bow belonging to an ancient race of technologically advanced people. Allows the user to briefly bring time to a near standstill for maximum accuracy when fully charged.");
             gun.SetupSprite(null, "phrenic_bow_idle_001", 16);

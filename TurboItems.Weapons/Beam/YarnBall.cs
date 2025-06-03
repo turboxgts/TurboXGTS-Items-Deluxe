@@ -19,7 +19,16 @@ namespace TurboItems
 
             Gun gun = ETGMod.Databases.Items.NewGun("Ball of Yarn", "ball_of_yarn");
             Game.Items.Rename("outdated_gun_mods:ball_of_yarn", "turbo:ball_of_yarn");
+
+            //Method causing issues
+
             var behav = gun.gameObject.AddComponent<YarnBall>();
+
+            //Test new method
+
+            //gun.gameObject.AddComponent<YarnBall>();
+
+
             behav.overrideNormalFireAudio = "Play_ENM_shelleton_beam_01";
             behav.preventNormalFireAudio = true;
             gun.SetShortDescription("Crochet Rocket");
@@ -59,7 +68,13 @@ namespace TurboItems
             };
 
             //BULLET STATS
+            //Old beam method maybe?
+
             Projectile projectile = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(86) as Gun).DefaultModule.projectiles[0]);
+
+            //New beam method maybe?
+
+            //Projectile projectile = ProjectileUtility.SetupProjectile(86);
 
             BasicBeamController beamComp = projectile.GenerateBeamPrefab(
                 "TurboItems/Resources/BeamSprites/ball_of_yarn_mid_001",
