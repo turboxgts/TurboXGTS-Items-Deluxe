@@ -23,6 +23,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>
+    </NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,6 +37,9 @@
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\HarmonyX.2.7.0\lib\net35\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Alexandria, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EtG.Alexandria.0.4.21\lib\net35\Alexandria.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EtG.GameLibs.2.1.9.1\lib\net35\Assembly-CSharp.dll</HintPath>
@@ -237,109 +242,229 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitialiseSynergies.cs" />
-    <Compile Include="ItemAPI\DualWieldSynergyProcessor.cs" />
     <Compile Include="SynergyFormInitialiser.cs" />
-    <Compile Include="TurboItems.Weapons\Melee\GargoyleHandLeft.cs" />
-    <Compile Include="TurboItems.Weapons\Melee\GargoyleHandRight.cs" />
     <Compile Include="TurboItems.Weapons\Melee\MasterSword.cs" />
     <Compile Include="TurboItems.Weapons\Normal\ClockworkAssaultRifle.cs" />
     <Compile Include="TurboItems.Weapons\Normal\PhrenicBow.cs" />
-    <Compile Include="TurboItems.Weapons\Other\MirrorSwordBeam.cs" />
-    <Compile Include="TurboItems.Weapons\Other\MirrorSwordLaser.cs" />
-    <Compile Include="TurboItems.Weapons\Other\MirrorSwordMeleeOnly.cs" />
-    <Compile Include="TurboItems.Weapons\Yin.cs" />
-    <Compile Include="TurboItems.Weapons\Yang.cs" />
     <Compile Include="Utilities\BeamToolbox.cs" />
-    <Compile Include="ItemAPI\AdvancedGunBehaviour.cs" />
     <Compile Include="Utilities\CompanionBehaviours.cs" />
     <Compile Include="Utilities\ListOfGunAbilities.cs" />
     <Compile Include="Utilities\ProjectileSlashingBehaviour.cs" />
     <Compile Include="Utilities\ProjectileTools.cs" />
     <Compile Include="Utilities\SlashDoer.cs" />
     <Compile Include="Utilities\ToolBox.cs" />
-    <Compile Include="TurboItems.Actives\BottleOfChoice.cs" />
     <Compile Include="TurboItems.Actives\KoopaShell.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\AC15Pack.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\BeholsterTentacle.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\BloodCoveredCloak.cs" />
-    <Compile Include="TurboItems.Items\BulletSpeedShift.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\HuntingKit.cs" />
-    <Compile Include="ItemAPI\CompanionBuilder.cs" />
-    <Compile Include="ItemAPI\CustomSynergies.cs" />
-    <Compile Include="TurboItems.Items\DevilsHorns.cs" />
-    <Compile Include="ItemAPI\FakePrefab\FakePrefab.cs" />
-    <Compile Include="ItemAPI\FakePrefab\FakePrefabHooks.cs" />
-    <Compile Include="ItemAPI\ItemBuilder.cs" />
-    <Compile Include="ItemAPI\Tools.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\IceTray.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\AAItemBundleTemplate.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\MedicalBox.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\GunbowPack.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\TrankGunPack.cs" />
-    <Compile Include="TurboItems.Weapons\Beam\DefinitelyNotBrimstone.cs" />
+    <Compile Include="TurboItems.Weapons\Beam\Beamstone.cs" />
     <Compile Include="TurboItems.Weapons\Normal\HammerBro.cs" />
-    <Compile Include="TurboItems.Weapons\Other\MirrorSword.cs" />
-    <Compile Include="TurboItems.Weapons\Beam\SelfHarmBeamWeaponBecauseNevernamedToldMeItWasOkayTo.cs" />
+    <Compile Include="TurboItems.Weapons\Beam\LaserDisk.cs" />
     <Compile Include="TurboItems.Weapons\Melee\WoodStake.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ItemAPI\ResourceExtractor.cs" />
-    <Compile Include="ItemAPI\SpriteBuilder.cs" />
-    <Compile Include="TurboItems.Items\ItemBundles\SamusHelmet.cs" />
     <Compile Include="TurboItems.Weapons\Beam\YarnBall.cs" />
     <Compile Include="Utilities\ReflectionHelpers.cs" />
-    <Compile Include="TurboItems.Items\Y.V.Bucks.cs" />
     <Compile Include="Utilities\VFXLibrary.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\devils_horns.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ItemBundleSprites\samus_helmet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ItemBundleSprites\beholster_tentacle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ItemBundleSprites\blood_cloak.png" />
-    <EmbeddedResource Include="Resources\Y.V.Bucks.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ItemBundleSprites\monster_hunting_kit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ItemBundleSprites\medical_box.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ItemBundleSprites\default_item_bundle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\bottle_of_choice.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ItemBundleSprites\ice_tray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\BeamSprites\ball_of_yarn_end_001.png" />
-    <EmbeddedResource Include="Resources\BeamSprites\ball_of_yarn_mid_001.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\BeamSprites\laser_disk_end_001.png" />
-    <EmbeddedResource Include="Resources\BeamSprites\laser_disk_mid_001.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\BeamSprites\absolutely_not_brimstone_end_001.png" />
-    <EmbeddedResource Include="Resources\BeamSprites\absolutely_not_brimstone_mid_001.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\koopa_shell.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\BeamSprites\wip2_end_001.png" />
-    <EmbeddedResource Include="Resources\BeamSprites\wip2_mid_001.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="packages.config" />
+    <None Include="Resources\sprites\WeaponCollection\beamstone\beamstone_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\beamstone\beamstone_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_005.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_006.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_007.json" />
+    <None Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\clockwork_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\clockwork_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\clockwork_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\clockwork_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\clockwork_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\droog\droog_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\droog\droog_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\droog\droog_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\droog\droog_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\droog\droog_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\laser_disk\laser_disk_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\laser_disk\laser_disk_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_005.json" />
+    <None Include="Resources\sprites\WeaponCollection\master_sword\master_sword_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_005.json" />
+    <None Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_005.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_006.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_007.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_008.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_009.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_010.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_011.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_012.json" />
+    <None Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\tv\tv_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\tv\tv_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\tv\tv_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\tv\tv_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\tv\tv_reload_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\tv\tv_reload_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_reload_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_reload_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_reload_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_002.json" />
+    <None Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_003.json" />
+    <None Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_004.json" />
+    <None Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_idle_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_reload_001.json" />
+    <None Include="Resources\sprites\WeaponCollection\yarn_ball_fire_001.json" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\yarn_ball_idle_001.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <Content Include="Resources\Beams\beamstone_end_001.png" />
+    <Content Include="Resources\Beams\beamstone_mid_001.png" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\yarn_ball_fire_001.png" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\yarn_ball_idle_001.png" />
+    <EmbeddedResource Include="Resources\Beams\yarn_ball_end_001.png" />
+    <EmbeddedResource Include="Resources\Beams\yarn_ball_mid_001.png" />
+    <Content Include="Resources\Beams\laser_disk_end_001.png" />
+    <Content Include="Resources\Beams\laser_disk_mid_001.png" />
+    <Content Include="Resources\Beams\wip2_end_001.png" />
+    <Content Include="Resources\Beams\wip2_mid_001.png" />
+    <EmbeddedResource Include="Resources\MiscActives\koopa_shell.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\beamstone_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\bees_knees_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\clockwork_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\droog_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\final_countdown_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\hammer_bro_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\laser_disk_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\master_sword_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\star_platinum_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\wooden_stake_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Ammonomicon Encounter Item Collection\yarn_ball_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\Projectiles\musket_ball.png" />
+    <Content Include="Resources\sprites\Projectiles\ora_ora_ora.png" />
+    <Content Include="Resources\sprites\VFXCollection\master_sword_slash_001.png" />
+    <Content Include="Resources\sprites\VFXCollection\master_sword_slash_002.png" />
+    <Content Include="Resources\sprites\VFXCollection\master_sword_slash_003.png" />
+    <Content Include="Resources\sprites\VFXCollection\master_sword_slash_004.png" />
+    <Content Include="Resources\sprites\VFXCollection\mirror_sword_slash_001.png" />
+    <Content Include="Resources\sprites\VFXCollection\mirror_sword_slash_002.png" />
+    <Content Include="Resources\sprites\VFXCollection\mirror_sword_slash_003.png" />
+    <Content Include="Resources\sprites\VFXCollection\mirror_sword_slash_004.png" />
+    <Content Include="Resources\sprites\VFXCollection\wooden_stake_slash_001.png" />
+    <Content Include="Resources\sprites\VFXCollection\wooden_stake_slash_002.png" />
+    <Content Include="Resources\sprites\VFXCollection\wooden_stake_slash_003.png" />
+    <Content Include="Resources\sprites\VFXCollection\wooden_stake_slash_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\beamstone\beamstone_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\beamstone\beamstone_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_005.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_006.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_fire_007.png" />
+    <Content Include="Resources\sprites\WeaponCollection\bees_knees\bees_knees_idle_001.png" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\clockwork_fire_001.png" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\clockwork_fire_002.png" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\clockwork_fire_003.png" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\clockwork_fire_004.png" />
+    <EmbeddedResource Include="Resources\sprites\WeaponCollection\clockwork_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\droog\droog_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\droog\droog_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\droog\droog_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\droog\droog_fire_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\droog\droog_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_fire_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\final_countdown\final_countdown_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\hammer_bro\hammer_bro_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\laser_disk\laser_disk_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\laser_disk\laser_disk_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\master_sword\master_sword_fire_005.png" />
+    <Content Include="Resources\sprites\WeaponCollection\master_sword\master_sword_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_fire_005.png" />
+    <Content Include="Resources\sprites\WeaponCollection\sack_gun\sack_gun_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_005.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_006.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_007.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_008.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_009.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_010.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_011.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_fire_012.png" />
+    <Content Include="Resources\sprites\WeaponCollection\star_platinum\star_platinum_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\tv\tv_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\tv\tv_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\tv\tv_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\tv\tv_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\tv\tv_reload_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\tv\tv_reload_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_reload_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_reload_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_reload_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\veteran_magnum\veteran_magnum_shoot_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_002.png" />
+    <Content Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_003.png" />
+    <Content Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_fire_004.png" />
+    <Content Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_idle_001.png" />
+    <Content Include="Resources\sprites\WeaponCollection\wooden_stake\wooden_stake_reload_001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\MiscPassives\" />
+    <Folder Include="TurboItems.Items\" />
+    <Folder Include="TurboItems.Weapons\Other\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\BepInEx.Core.5.4.21\build\BepInEx.Core.targets" Condition="Exists('packages\BepInEx.Core.5.4.21\build\BepInEx.Core.targets')" />

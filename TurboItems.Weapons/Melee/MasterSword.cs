@@ -1,26 +1,30 @@
-﻿using System;
+﻿using Alexandria.ItemAPI;
+using Alexandria.SoundAPI;
+using Gungeon;
+using MonoMod.RuntimeDetour;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using MonoMod.RuntimeDetour;
-using Gungeon;
-using ItemAPI;
 using UnityEngine;
 
 namespace TurboItems
 {
-    class MasterSword : AdvancedGunBehaviour
+    class MasterSword : GunBehaviour
     {
         public static int Add()
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Master Sword", "master_sword");
             Game.Items.Rename("outdated_gun_mods:master_sword", "turbo:master_sword");
             var behav = gun.gameObject.AddComponent<MasterSword>();
-            behav.overrideNormalFireAudio = "Play_WPN_blasphemy_shot_01";
-            behav.preventNormalFireAudio = true;
+
             gun.SetShortDescription("Comically large");
             gun.SetLongDescription("An exquisite sword, belonging to a lost adventurer. Angers the Jammed.");
+
             gun.SetupSprite(null, "master_sword_idle_001", 8);
+            gun.SetAnimationFPS(gun.shootAnimation, 8);
+            gun.SetAnimationFPS(gun.reloadAnimation, 8);
+
             tk2dSpriteAnimationClip fireClip2 = gun.sprite.spriteAnimator.GetClipByName("master_sword_fire");
 
             float[] offsetsX2 = new float[] { -0.25f, -0.5625f, -0.5625f, -0.75f, -1.3125f };
@@ -38,29 +42,36 @@ namespace TurboItems
                 fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position3.x += offsetsX2[i];
                 fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position3.y += offsetsY2[i];
             }
-            gun.SetAnimationFPS(gun.shootAnimation, 8);
-            gun.SetAnimationFPS(gun.reloadAnimation, 8);
-            gun.AddProjectileModuleFrom("38_special", true, false);
+
+            gun.gunSwitchGroup = "turbo:master_sword";
+
+            SoundManager.AddCustomSwitchData("WPN_Guns", gun.gunSwitchGroup, "Play_WPN_Gun_Shot_01", "Play_WPN_blasphemy_shot_01");
 
             //Gun stats
-            gun.AddPassiveStatModifier(PlayerStats.StatType.Curse, 3f, StatModifier.ModifyMethod.ADDITIVE);
+            gun.AddProjectileModuleFrom("38_special", true, false);
+
             gun.DefaultModule.ammoCost = 0;
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = "white";
             gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
-            gun.DefaultModule.angleVariance = 0f;
-            gun.DefaultModule.numberOfShotsInClip = -1;
-            gun.quality = PickupObject.ItemQuality.SPECIAL;
-            gun.encounterTrackable.EncounterGuid = "ea sports it's in the game";
-            gun.gunClass = GunClass.NONE;
-            gun.barrelOffset.transform.localPosition = new Vector3(1.25f, 0f, 0);
-            gun.muzzleFlashEffects.type = VFXPoolType.None;
-            gun.reloadTime = 0;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
-            gun.SetBaseMaxAmmo(3);
+
+            gun.reloadTime = 0;
             gun.DefaultModule.cooldownTime = 0.66f;
+            gun.DefaultModule.numberOfShotsInClip = -1;
+            //TODO: check if 3 max ammo is intended
+            gun.SetBaseMaxAmmo(3);
+
+            gun.muzzleFlashEffects.type = VFXPoolType.None;
+            gun.DefaultModule.angleVariance = 0f;
+            gun.barrelOffset.transform.localPosition = new Vector3(1.25f, 0f, 0);
             gun.sprite.IsPerpendicular = true;
+
+            gun.AddPassiveStatModifier(PlayerStats.StatType.Curse, 3f, StatModifier.ModifyMethod.ADDITIVE);
+            gun.gunClass = GunClass.NONE;
             gun.quality = PickupObject.ItemQuality.A;
+            //TODO: check what "SPECIAL" quality does
+            //gun.quality = PickupObject.ItemQuality.SPECIAL;
 
             gun.SuppressLaserSight = true;
 

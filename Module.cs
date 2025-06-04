@@ -1,7 +1,8 @@
 ﻿using BepInEx;
-using ItemAPI;
+using Alexandria.ItemAPI;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml.Linq;
 
 namespace TurboItems
@@ -10,70 +11,46 @@ namespace TurboItems
     [BepInDependency(ETGModMainBehaviour.GUID)]
     public class Module : BaseUnityPlugin
     {
-        //public static readonly string MOD_NAME = "TurboXGTSItems";
-        //public static readonly string VERSION = "2.1.0";
-        //public static readonly string TEXT_COLOR = "#00FFFF";
         public const string GUID = "turbo.etg.turbodeluxe";
         public const string NAME = "TurboXGTS's Items Deluxe";
         public const string VERSION = "1.0.0";
 
         public void Start()
         {
+            ETGMod.Assets.SetupSpritesFromAssembly(Assembly.GetExecutingAssembly(), "Resources");
             ETGModMainBehaviour.WaitForGameManagerStart(GMStart);
         }
 
         public void GMStart(GameManager manager)
         {
+            //TODO: Go through and fix/change item descriptions
+            //TODO: check gun classes and qualities
             ItemBuilder.Init();
 
-            //Normal passives (very bad remove or redo)
-
-            DevilsHorns.Register();
-            BulletSpeedShift.Register();
+            //Passives
 
             //Actives
 
-            ChoiceBottle.Init();
             KoopaShell.Init();
 
             //Beam weapons
 
-            //YarnBall.Add(); //unspecified NRE
-            //SelfHarmBeamWeaponBecauseNevernamedToldMeItWasOkayTo.Add(); //unspecified NRE
-            //DefinitelyNotBrimstone.Add();
+            //YarnBall.Add();
+            //LaserDisk.Add();
+            //Beamstone.Add();
 
-            //Melee weapons
+            ////Melee weapons
 
-            WoodStake.Add(); //fine
-            //MirrorSword.Add();
-            //MirrorSwordMeleeOnly.Add(); //unspecified NRE
+            //WoodStake.Add();
             //MasterSword.Add();
 
-            //Normal weapons
+            ////Normal weapons
 
             //HammerBro.Add();
+            ////TODO: 3 round burst might be unfinished
             ClockworkAssaultRifle.Add();
-            PhrenicBow.Add();
-
-            //Unfinished stuff
-
-            MirrorSwordBeam.Add(); //will be unused until something fixes the weird beam ammo bug
-            MirrorSwordLaser.Add(); //unused 'til I figure out some stuffs
-            GargoyleHandLeft.Add();
-            GargoyleHandRight.Add();
-            Yin.Add();
-            Yang.Add();
-
-            //Item bundles (very bad remove or redo)
-
-            SamusHelmet.Register();
-            HuntingKit.Register();
-            MedicalBox.Register();
-            BloodCoveredCloak.Register();
-            AC15Pack.Register();
-            TrankGunPack.Register();
-            GunbowPack.Register();
-            IceTray.Register();
+            //TODO: make the sprites I guess??? I mighta lost them or just never had them done in the first place
+            //PhrenicBow.Add();
 
 
             InitialiseSynergies.DoInitialisation();

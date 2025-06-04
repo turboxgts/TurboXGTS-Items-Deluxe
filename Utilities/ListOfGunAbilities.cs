@@ -1,8 +1,8 @@
-﻿using ItemAPI;
+﻿using Alexandria.ItemAPI;
 
 namespace TurboItems
 {
-    class GunList : AdvancedGunBehaviour
+    class GunList : GunBehaviour
     {
         public static void Add()
         {

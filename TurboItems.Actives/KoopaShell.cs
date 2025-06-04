@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ItemAPI;
+using Alexandria.ItemAPI;
 using UnityEngine;
 using Dungeonator;
 
@@ -13,7 +13,7 @@ namespace TurboItems
         public static void Init()
         {
             string itemName = "Koopa Shell";
-            string resourceName = "TurboItems/Resources/koopa_shell";
+            string resourceName = "TurboItems/Resources/MiscActives/koopa_shell";
             GameObject obj = new GameObject(itemName);
             var item = obj.AddComponent<KoopaShell>();
             ItemBuilder.AddSpriteToObject(itemName, resourceName, obj);

@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Gungeon;
 using System.Collections;
-using ItemAPI;
+using Alexandria.ItemAPI;
 using Dungeonator;
 using System.Collections.ObjectModel;
 

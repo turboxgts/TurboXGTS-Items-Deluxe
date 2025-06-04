@@ -1,39 +1,46 @@
-﻿using System;
-using System.Collections;
+﻿using Alexandria.ItemAPI;
+using Alexandria.SoundAPI;
 using Gungeon;
 using MonoMod;
+using System;
+using System.Collections;
 using UnityEngine;
-using ItemAPI;
 
 namespace TurboItems
 {
-    class HammerBro : AdvancedGunBehaviour
+    class HammerBro : GunBehaviour
     {
         public static void Add()
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Hammer Bro. Hammer", "hammer_bro");
-            var behav = gun.gameObject.AddComponent<HammerBro>();
-            behav.overrideNormalFireAudio = "Play_OBJ_cigarette_throw_01";
-            behav.preventNormalFireAudio = true;
-            behav.preventNormalReloadAudio = true;
             Game.Items.Rename("outdated_gun_mods:hammer_bro._hammer", "turbo:hammer_bro._hammer");
+            var behav = gun.gameObject.AddComponent<HammerBro>();
+
             gun.SetShortDescription("Y E E T");
             gun.SetLongDescription("The seemingly infinitely replicating hammer of an odd hammer-throwing turtle. Grants the user the same abilities.");
+
             gun.SetupSprite(null, "hammer_bro_idle_001", 8);
             gun.SetAnimationFPS(gun.shootAnimation, 16);
+
+            gun.gunSwitchGroup = "turbo:hammer_bro";
+
+            SoundManager.AddCustomSwitchData("WPN_Guns", gun.gunSwitchGroup, "Play_WPN_Gun_Shot_01", "Play_OBJ_cigarette_throw_01");
+            SoundManager.AddCustomSwitchData("WPN_Guns", gun.gunSwitchGroup, "Play_WPN_Gun_Reload_01");
+
             gun.AddProjectileModuleFrom("ak-47", true, false);
-            //gun.AddProjectileModuleFrom(PickupObjectDatabase.GetByEncounterName("H4mmer") as Gun, true, false);
-            //gun.DefaultModule.ammoType = (PickupObjectDatabase.GetById(91) as Gun).DefaultModule.finalAmmoType;
+
             gun.DefaultModule.ammoCost = 1;
-            gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
+            //TODO: set ammo type to be the h4mmer's hammer
             gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
+            gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
             gun.reloadTime = 0f;
             gun.DefaultModule.cooldownTime = 0.33f;
             gun.DefaultModule.numberOfShotsInClip = -1;
             gun.SetBaseMaxAmmo(350);
-            gun.quality = PickupObject.ItemQuality.C;
-            gun.encounterTrackable.EncounterGuid = "jkzsrv gilsdtrbvhisgdrnhvkgesicngsdiulyrvglgibusd yi7ryv isr dyvdsliua";
+
             gun.AddPassiveStatModifier(PlayerStats.StatType.ThrownGunDamage, 10, StatModifier.ModifyMethod.MULTIPLICATIVE);
+            gun.quality = PickupObject.ItemQuality.C;
+
             Projectile projectile = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(91) as Gun).DefaultModule.finalProjectile);
             projectile.gameObject.SetActive(false);
             FakePrefab.MarkAsFakePrefab(projectile.gameObject);
@@ -46,12 +53,6 @@ namespace TurboItems
             projectile.pierceMinorBreakables = true;
             projectile.transform.parent = gun.barrelOffset;
             ETGMod.Databases.Items.Add(gun, null, "ANY");
-        }
-        public override void OnReloadPressed(PlayerController player, Gun gun, bool bSOMETHING)
-        {
-                AkSoundEngine.PostEvent("Stop_WPN_All", base.gameObject);
-                base.OnReloadPressed(player, gun, bSOMETHING);
-                AkSoundEngine.PostEvent("Play_WPN_brickgun_reload_01", base.gameObject);
         }
 
         public override void PostProcessProjectile(Projectile projectile)
