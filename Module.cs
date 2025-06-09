@@ -17,7 +17,7 @@ namespace TurboItems
 
         public void Start()
         {
-            ETGMod.Assets.SetupSpritesFromAssembly(Assembly.GetExecutingAssembly(), "Resources");
+            ETGMod.Assets.SetupSpritesFromAssembly(Assembly.GetExecutingAssembly(), "TurboItems/Resources/sprites");
             ETGModMainBehaviour.WaitForGameManagerStart(GMStart);
         }
 
@@ -25,32 +25,35 @@ namespace TurboItems
         {
             //TODO: Go through and fix/change item descriptions
             //TODO: check gun classes and qualities
+
             ItemBuilder.Init();
 
             //Passives
 
+
             //Actives
 
-            KoopaShell.Init();
+            //KoopaShell.Init();
+
 
             //Beam weapons
 
             //YarnBall.Add();
             //LaserDisk.Add();
-            //Beamstone.Add();
 
-            ////Melee weapons
 
-            //WoodStake.Add();
-            //MasterSword.Add();
+            //Melee weapons
 
-            ////Normal weapons
+
+            //Normal weapons
 
             //HammerBro.Add();
-            ////TODO: 3 round burst might be unfinished
+            //TODO: 3 round burst might be unfinished
             ClockworkAssaultRifle.Add();
-            //TODO: make the sprites I guess??? I mighta lost them or just never had them done in the first place
-            //PhrenicBow.Add();
+
+
+
+            DisembodiedHand.Add();
 
 
             InitialiseSynergies.DoInitialisation();

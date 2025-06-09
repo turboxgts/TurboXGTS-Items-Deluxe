@@ -27,6 +27,8 @@ namespace TurboItems
             gun.SetupSprite(null, "laser_disk_idle_001", 8);
             gun.SetAnimationFPS(gun.shootAnimation, 8);
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
+            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).wrapMode = tk2dSpriteAnimationClip.WrapMode.LoopSection;
+            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).loopStart = 1;
 
             gun.gunSwitchGroup = "turbo:laser_disk";
 
@@ -53,8 +55,6 @@ namespace TurboItems
 
             gun.quality = PickupObject.ItemQuality.D;
 
-            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).wrapMode = tk2dSpriteAnimationClip.WrapMode.LoopSection;
-            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).loopStart = 1;
             
             List<string> BeamAnimPaths = new List<string>()
             {
@@ -95,9 +95,9 @@ namespace TurboItems
             FakePrefab.MarkAsFakePrefab(projectile.gameObject);
             UnityEngine.Object.DontDestroyOnLoad(projectile);
             projectile.baseData.damage = 1f;
+            projectile.baseData.speed *= 3f;
             projectile.baseData.force *= 1f;
             projectile.baseData.range = 500f;
-            projectile.baseData.speed *= 3f;
             //SelfHarmBulletBehaviour SuicidalTendancies = projectile.gameObject.AddComponent<SelfHarmBulletBehaviour>();
             beamComp.penetration = 0;
             beamComp.reflections = 2;

@@ -13,7 +13,7 @@ namespace TurboItems
         public static void Add()
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Hammer Bro. Hammer", "hammer_bro");
-            Game.Items.Rename("outdated_gun_mods:hammer_bro._hammer", "turbo:hammer_bro._hammer");
+            Game.Items.Rename("outdated_gun_mods:hammer_bro._hammer", "turbo:hammer_bro");
             var behav = gun.gameObject.AddComponent<HammerBro>();
 
             gun.SetShortDescription("Y E E T");
@@ -31,8 +31,8 @@ namespace TurboItems
 
             gun.DefaultModule.ammoCost = 1;
             //TODO: set ammo type to be the h4mmer's hammer
-            gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
+            gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
             gun.reloadTime = 0f;
             gun.DefaultModule.cooldownTime = 0.33f;
             gun.DefaultModule.numberOfShotsInClip = -1;

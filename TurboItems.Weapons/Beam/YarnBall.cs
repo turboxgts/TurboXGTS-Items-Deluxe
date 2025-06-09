@@ -28,6 +28,8 @@ namespace TurboItems
             gun.SetupSprite(null, "yarn_ball_idle_001", 8);
             gun.SetAnimationFPS(gun.shootAnimation, 8);
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
+            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).wrapMode = tk2dSpriteAnimationClip.WrapMode.LoopSection;
+            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).loopStart = 1;
 
             gun.gunSwitchGroup = "turbo:yarn_ball";
 
@@ -40,8 +42,8 @@ namespace TurboItems
             //GUN STATS
             gun.DefaultModule.ammoCost = 1;
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.BEAM;
-            gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.Beam;
+            gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
 
             gun.reloadTime = 0f;
             gun.DefaultModule.cooldownTime = 0.001f;
@@ -55,8 +57,6 @@ namespace TurboItems
 
             gun.quality = PickupObject.ItemQuality.C;
 
-            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).wrapMode = tk2dSpriteAnimationClip.WrapMode.LoopSection;
-            gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.shootAnimation).loopStart = 1;
 
             List<string> BeamAnimPaths = new List<string>()
             {
@@ -103,9 +103,9 @@ namespace TurboItems
             FakePrefab.MarkAsFakePrefab(projectile.gameObject);
             UnityEngine.Object.DontDestroyOnLoad(projectile);
             projectile.baseData.damage = 12f;
+            projectile.baseData.speed *= 3f;
             projectile.baseData.force *= 0.5f;
             projectile.baseData.range = 15f;
-            projectile.baseData.speed *= 3f;
 
             beamComp.penetration = 0;
             beamComp.boneType = BasicBeamController.BeamBoneType.Projectile;
